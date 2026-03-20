@@ -11,8 +11,10 @@ The goal is still simplicity. R remains the spatial filtering stage. Python rema
 ```text
 phase_01_ownership_share/
   scripts/         R scripts for parcel selection / filtering
+  excel/           Excel inputs/reference files for ownership share
 phase_02_ownership_scale/
   scripts/         Python scripts for owner grouping / scale analysis
+  excel/           Excel outputs/reference files for ownership scale
 data/
   raw/             source files from TCAD and other inputs
   intermediate/    handoff files between the two phases
@@ -46,10 +48,13 @@ The Python phase only requires `owner_name` and `owner_address`, but the full se
 ## Naming conventions
 
 - Shared raw data: `data/raw/`
+- Phase 1 Excel files: `phase_01_ownership_share/excel/`
 - Shared handoff file: `data/intermediate/ownership_share_filtered_parcels.csv`
 - Phase 1 summary output: `outputs/ownership_share/`
 - Phase 2 parcel-level output: `outputs/ownership_scale/ownership_scale_by_parcel.csv`
-- Phase 2 owner-level output: `outputs/ownership_scale/ownership_scale_by_owner.xlsx`
+- Phase 2 Excel files: `phase_02_ownership_scale/excel/`
+- Phase 2 parcel-level Excel output: `phase_02_ownership_scale/excel/ownership_scale_by_parcel.xlsx`
+- Phase 2 owner-level output: `phase_02_ownership_scale/excel/ownership_scale_by_owner.xlsx`
 
 ## How to run
 

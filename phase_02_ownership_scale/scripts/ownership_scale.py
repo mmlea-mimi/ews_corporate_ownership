@@ -7,7 +7,8 @@ import pandas as pd
 ROOT = Path(__file__).resolve().parents[2]
 INPUT_PATH = ROOT / "data/intermediate/ownership_share_filtered_parcels.csv"
 PARCEL_OUTPUT_PATH = ROOT / "outputs/ownership_scale/ownership_scale_by_parcel.csv"
-OWNER_OUTPUT_PATH = ROOT / "outputs/ownership_scale/ownership_scale_by_owner.xlsx"
+PARCEL_OUTPUT_XLSX_PATH = ROOT / "phase_02_ownership_scale/excel/ownership_scale_by_parcel.xlsx"
+OWNER_OUTPUT_PATH = ROOT / "phase_02_ownership_scale/excel/ownership_scale_by_owner.xlsx"
 
 # The Python step only requires owner_name and owner_address to compute the
 # exact-match baseline, but we standardize a few common parcel columns here so
@@ -81,6 +82,8 @@ def main() -> None:
         )
 
     PARCEL_OUTPUT_PATH.parent.mkdir(parents=True, exist_ok=True)
+    PARCEL_OUTPUT_XLSX_PATH.parent.mkdir(parents=True, exist_ok=True)
+    OWNER_OUTPUT_PATH.parent.mkdir(parents=True, exist_ok=True)
 
     df = pd.read_csv(INPUT_PATH, low_memory=False)
     df = standardize_columns(df)
@@ -151,9 +154,11 @@ def main() -> None:
     df_out = df_out[output_columns]
 
     df_out.to_csv(PARCEL_OUTPUT_PATH, index=False)
+    df_out.to_excel(PARCEL_OUTPUT_XLSX_PATH, index=False)
     owner_scale.to_excel(OWNER_OUTPUT_PATH, index=False)
 
     print(f"Wrote parcel-level output: {PARCEL_OUTPUT_PATH}")
+    print(f"Wrote parcel-level Excel output: {PARCEL_OUTPUT_XLSX_PATH}")
     print(f"Wrote owner-level output: {OWNER_OUTPUT_PATH}")
 
 

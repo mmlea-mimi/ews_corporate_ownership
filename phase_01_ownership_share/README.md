@@ -4,7 +4,9 @@ This folder contains the first phase of the pipeline: identifying the parcels th
 
 ## Role in pipeline
 
-- Input: shared source data in `data/raw/`
+- Inputs:
+  - shared source data in `data/raw/`
+  - Excel files in `phase_01_ownership_share/excel/`
 - Main output: filtered parcel handoff in `data/intermediate/ownership_share_filtered_parcels.csv`
 - Supporting outputs: summaries in `outputs/ownership_share/`
 

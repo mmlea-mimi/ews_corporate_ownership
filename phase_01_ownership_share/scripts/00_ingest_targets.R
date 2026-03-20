@@ -1,6 +1,6 @@
 # phase_01_ownership_share/scripts/00_ingest_targets.R
 # Purpose:
-#  - Read data/raw/target_properties.xlsx
+#  - Read phase_01_ownership_share/excel/target_properties.xlsx
 #  - Extract a clean list of parcel IDs
 #  - Write data/intermediate/targets_parcel_ids.csv
 #  - Write a quick summary to outputs/ownership_share/targets_summary.txt
@@ -12,7 +12,7 @@ suppressPackageStartupMessages({
   library(readr)
 })
 
-in_path <- "data/raw/target_properties.xlsx"
+in_path <- "phase_01_ownership_share/excel/target_properties.xlsx"
 out_csv <- "data/intermediate/targets_parcel_ids.csv"
 out_summary <- "outputs/ownership_share/targets_summary.txt"
 

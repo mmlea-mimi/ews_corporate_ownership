@@ -7,7 +7,9 @@ This folder contains the second phase of the pipeline: exact-match ownership-sca
 - Input: `data/intermediate/ownership_share_filtered_parcels.csv`
 - Outputs:
   - `outputs/ownership_scale/ownership_scale_by_parcel.csv`
-  - `outputs/ownership_scale/ownership_scale_by_owner.xlsx`
+  - `phase_02_ownership_scale/excel/ownership_scale_by_parcel.xlsx`
+  - `phase_02_ownership_scale/excel/ownership_scale_by_owner.xlsx`
+  - other ownership-scale Excel files in `phase_02_ownership_scale/excel/`
 
 ## Active script
 
