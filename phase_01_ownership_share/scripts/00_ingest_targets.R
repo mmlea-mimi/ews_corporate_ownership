@@ -1,9 +1,9 @@
-# src/00_ingest_targets.R
+# phase_01_ownership_share/scripts/00_ingest_targets.R
 # Purpose:
 #  - Read data/raw/target_properties.xlsx
-#  - Extract a clean list of parcel IDs (pID)
-#  - Write data/interim/targets_parcel_ids.csv
-#  - Write a quick summary to outputs/targets_summary.txt
+#  - Extract a clean list of parcel IDs
+#  - Write data/intermediate/targets_parcel_ids.csv
+#  - Write a quick summary to outputs/ownership_share/targets_summary.txt
 
 suppressPackageStartupMessages({
   library(readxl)
@@ -13,11 +13,11 @@ suppressPackageStartupMessages({
 })
 
 in_path <- "data/raw/target_properties.xlsx"
-out_csv <- "data/interim/targets_parcel_ids.csv"
-out_summary <- "outputs/targets_summary.txt"
+out_csv <- "data/intermediate/targets_parcel_ids.csv"
+out_summary <- "outputs/ownership_share/targets_summary.txt"
 
-dir.create("data/interim", recursive = TRUE, showWarnings = FALSE)
-dir.create("outputs", recursive = TRUE, showWarnings = FALSE)
+dir.create("data/intermediate", recursive = TRUE, showWarnings = FALSE)
+dir.create("outputs/ownership_share", recursive = TRUE, showWarnings = FALSE)
 
 # Read first sheet by default (change if needed)
 df_raw <- readxl::read_excel(in_path, col_names = FALSE)
@@ -49,8 +49,8 @@ if (max(col_scores) < 0.3) {
 }
 
 targets <- df |>
-  transmute(pID = as.character(.data[[pid_col]])) |>
-  filter(!is.na(pID), pID != "") |>
+  transmute(parcel_id = as.character(.data[[pid_col]])) |>
+  filter(!is.na(parcel_id), parcel_id != "") |>
   distinct()
 
 readr::write_csv(targets, out_csv)
@@ -59,7 +59,7 @@ summary_lines <- c(
   paste("Input file:", in_path),
   paste("Detected parcel id column:", pid_col),
   paste("Rows in input:", nrow(df)),
-  paste("Distinct pIDs written:", nrow(targets)),
+  paste("Distinct parcel IDs written:", nrow(targets)),
   paste("Duplicates removed:", nrow(df) - nrow(distinct(df, .data[[pid_col]])))
 )
 

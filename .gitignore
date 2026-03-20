@@ -4,5 +4,13 @@ data/
 # Ignore outputs
 outputs/
 
+# Legacy standalone workflow folder
+ownership_scale/
+
+# Python caches / local environments
+__pycache__/
+*.pyc
+.venv/
+
 # OS junk
 .DS_Store
